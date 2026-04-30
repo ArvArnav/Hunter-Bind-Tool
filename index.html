@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Hunter Double Unsubscribed</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Orbitron:wght@600&family=Audiowide&display=swap" rel="stylesheet">
+
+<style>
+
+*{box-sizing:border-box;}
+
+body {
+  margin:0;
+  font-family:'Inter', sans-serif;
+  background: linear-gradient(135deg,#0f172a,#020617);
+  color:#e5e7eb;
+}
+
+.container { max-width:420px; margin:auto; padding:16px; }
+
+.companyHeader { display:flex; align-items:center; gap:12px; }
+
+.logo {
+  width:45px; height:45px; border-radius:50%;
+  background: linear-gradient(135deg,#6366f1,#22d3ee);
+  display:flex; align-items:center; justify-content:center;
+  font-family:'Orbitron'; font-size:18px; font-weight:bold;
+}
+
+.companyName { font-size:15px; }
+
+.glowBig {
+  font-family:'Audiowide';
+  color:#a78bfa;
+  text-shadow:0 0 5px #a78bfa,0 0 15px #6366f1,0 0 30px #22d3ee;
+  animation: glow 2s infinite alternate;
+}
+
+.glowTitle {
+  font-family:'Audiowide';
+  color:#22d3ee;
+  text-shadow:0 0 5px #22d3ee,0 0 15px #6366f1;
+  animation: glow 2s infinite alternate;
+}
+
+@keyframes glow{
+  from{ text-shadow:0 0 5px #22d3ee;}
+  to{ text-shadow:0 0 20px #6366f1;}
+}
+
+.card {
+  background: rgba(255,255,255,0.04);
+  backdrop-filter: blur(14px);
+  border-radius:16px;
+  padding:16px;
+  margin-bottom:14px;
+}
+
+.header { display:flex; justify-content:space-between; }
+.online { color:#22c55e; }
+.amount { font-size:32px; color:#22d3ee; }
+
+/* 🔥 SAFE ANIMATED BUTTONS */
+.btn {
+  padding:13px;
+  border-radius:12px;
+  margin-top:10px;
+  background: linear-gradient(135deg,#6366f1,#22d3ee);
+  cursor:pointer;
+  text-align:center;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  animation: softGlow 3s infinite;
+}
+
+.btn:hover {
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 0 10px #22d3ee,
+              0 0 20px #22d3ee,
+              0 0 30px #6366f1;
+}
+
+.btn:active {
+  transform: scale(0.96);
+}
+
+/* Shine */
+.btn::before {
+  content:"";
+  position:absolute;
+  top:0;
+  left:-100%;
+  width:100%;
+  height:100%;
+  background: linear-gradient(120deg,transparent,rgba(255,255,255,0.4),transparent);
+  transition:0.6s;
+}
+
+.btn:hover::before {
+  left:100%;
+}
+
+/* Glow animation */
+@keyframes softGlow {
+  0% { box-shadow: 0 0 5px #22d3ee; }
+  50% { box-shadow: 0 0 12px #6366f1; }
+  100% { box-shadow: 0 0 5px #22d3ee; }
+}
+
+.adminBtn { display:flex; align-items:center; justify-content:center; gap:10px; }
+.tgIcon { width:20px; }
+
+input {
+  width:100%; padding:12px; margin-top:10px;
+  border-radius:10px; border:none;
+  background:#020617; color:white;
+}
+
+.qr { text-align:center; }
+.qr img { width:180px; margin-top:10px; }
+.upi { color:#fb7185; }
+
+#liveToast {
+  position: fixed; bottom:20px; left:20px;
+  background:#020617; padding:10px;
+  border-radius:8px; display:none;
+}
+
+.orderBox { display:none; }
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="card companyHeader">
+  <div class="logo">HB</div>
+  <div class="companyName glowBig">Hunter Bind Managing Systems</div>
+</div>
+
+<div class="card header">
+  <div>Gaming Panel</div>
+  <div class="online">● Online</div>
+</div>
+
+<div class="card" style="text-align:center;">
+  <h3>🟢 Live Users</h3>
+  <div id="liveUsers">132</div>
+</div>
+
+<div class="card">
+  <h3>Recent Orders</h3>
+  <div id="recentOrders"></div>
+</div>
+
+<div class="card">
+  <h3 class="glowTitle">FF DOUBLE UNSUBSCRIBE</h3>
+</div>
+
+<div class="card">
+  <div>Total Amount</div>
+  <div class="amount">₹1000</div>
+</div>
+
+<div class="card">
+  <h3>Payment</h3>
+  <div class="btn" onclick="selectPay('Visa')">Visa 💳</div>
+  <div class="btn" onclick="selectPay('Google Play')">Google Play 💲</div>
+  <div class="btn" onclick="selectPay('PayPal')">PayPal 🅿️</div>
+</div>
+
+<div class="card">
+  <h3>Contact Admin</h3>
+
+  <div class="btn adminBtn" onclick="openAdmin('https://t.me/Hunter666yt')">
+    <img src="https://cdn-icons-png.flaticon.com/512/2111/2111646.png" class="tgIcon">
+    Admin 1
+  </div>
+
+  <div class="btn adminBtn" onclick="openAdmin('https://t.me/CARDERxKING4REASON')">
+    <img src="https://cdn-icons-png.flaticon.com/512/2111/2111646.png" class="tgIcon">
+    Admin 2 
+  </div>
+</div>
+
+<div class="card">
+  <input type="email" id="email" placeholder="Enter email">
+  <div class="btn" onclick="submitOrder()">Submit</div>
+</div>
+
+<div class="card qr">
+  <h3>Scan</h3>
+  <img src="https://cdn-icons-png.flaticon.com/512/2331/2331943.png" style="width:70px">
+  <img src="https://i.postimg.cc/J7bL5qfT/IMG-20260315-WA0026.jpg">
+  <div class="upi">8115909294@fam</div>
+</div>
+
+<div class="card orderBox" id="orderBox">
+  <h3>Order Created</h3>
+  <p id="orderId"></p>
+</div>
+
+</div>
+
+<!-- PAYMENT POPUP -->
+<div id="paymentPopup" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.7); align-items:center; justify-content:center;">
+  <div style="background:#020617; padding:20px; border-radius:14px; text-align:center;">
+    <img src="https://cdn-icons-png.flaticon.com/512/2331/2331943.png" style="width:120px;">
+    <div class="btn" onclick="goToWhatsApp()">Pay</div>
+    <div onclick="closePopup()" style="margin-top:10px;cursor:pointer;">Cancel</div>
+  </div>
+</div>
+
+<!-- PAYMENT FIRST ALERT -->
+<div id="paymentAlert" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.7); align-items:center; justify-content:center;">
+  <div style="background:#020617; padding:20px; border-radius:14px; text-align:center;">
+    <h3 style="color:#fb7185;">⚠ Payment First</h3>
+    <p>Please select payment method first</p>
+    <div class="btn" onclick="closePaymentAlert()">OK</div>
+  </div>
+</div>
+
+<audio id="pingSound" src="https://www.myinstants.com/media/sounds/discord-notification.mp3"></audio>
+<div id="liveToast"></div>
+
+<script>
+
+let selectedMethod="";
+
+function openAdmin(url){
+  window.open(url, "_blank");
+}
+
+function selectPay(method){
+  selectedMethod = method;
+  document.getElementById("paymentPopup").style.display="flex";
+}
+
+function closePopup(){
+  document.getElementById("paymentPopup").style.display="none";
+}
+
+function closePaymentAlert(){
+  document.getElementById("paymentAlert").style.display="none";
+}
+
+function goToWhatsApp(){
+  let phone = "919999999999";
+  let msg = "Payment via " + selectedMethod;
+  window.open("https://wa.me/"+phone+"?text="+encodeURIComponent(msg));
+}
+
+function submitOrder(){
+  let email = document.getElementById("email").value;
+
+  if(selectedMethod==""){
+    document.getElementById("paymentAlert").style.display="flex";
+    return;
+  }
+
+  if(email==""){
+    alert("Enter email");
+    return;
+  }
+
+  let id="ORD"+Math.floor(Math.random()*100000);
+  document.getElementById("orderBox").style.display="block";
+  document.getElementById("orderId").innerText=id;
+}
+
+/* LIVE SYSTEM */
+const names=["Rahul","Aman","Neha","Pooja","Arjun"];
+const cities=["Lucknow","Delhi","Mumbai"];
+const actions=["purchased","completed payment","placed order"];
+
+let count=130;
+
+setInterval(()=>{
+  count += Math.floor(Math.random()*5)-2;
+  document.getElementById("liveUsers").innerText=count;
+},3000);
+
+function showActivity(){
+  let name=names[Math.floor(Math.random()*names.length)];
+  let city=cities[Math.floor(Math.random()*cities.length)];
+  let action=actions[Math.floor(Math.random()*actions.length)];
+
+  let msg=name+" from "+city+" "+action;
+
+  let t=document.getElementById("liveToast");
+  t.innerText=msg;
+  t.style.display="block";
+
+  document.getElementById("pingSound").play().catch(()=>{});
+
+  setTimeout(()=>{t.style.display="none";},3000);
+
+  let box=document.getElementById("recentOrders");
+  let div=document.createElement("div");
+  div.innerText="• "+msg;
+  box.prepend(div);
+
+  if(box.childNodes.length>5){
+    box.removeChild(box.lastChild);
+  }
+}
+
+setInterval(showActivity,6000);
+
+document.body.addEventListener("click", ()=>{
+  document.getElementById("pingSound").play().catch(()=>{});
+},{once:true});
+
+</script>
+
+</body>
+</html>
