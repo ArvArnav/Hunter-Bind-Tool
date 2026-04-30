@@ -132,6 +132,17 @@ input {
 
 .orderBox { display:none; }
 
+  .footer {
+  background-color: #111;
+  color: #fff;
+  text-align: center;
+  padding: 15px 0;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  font-size: 14px;
+  }
+
 </style>
 </head>
 
@@ -315,6 +326,10 @@ setInterval(showActivity,6000);
 document.body.addEventListener("click", ()=>{
   document.getElementById("pingSound").play().catch(()=>{});
 },{once:true});
+  
+  <footer class="footer">
+  <p>© 2026 Hunter Bind System All rights reserved.</p>
+</footer>
 
 </script>
 
