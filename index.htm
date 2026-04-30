@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Hunter Double Unsubscribed</title>
+
+<!-- Better Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Orbitron:wght@600&display=swap" rel="stylesheet">
+
+<style>
+
+*{box-sizing:border-box;}
+
+body {
+  margin:0;
+  font-family:'Inter', sans-serif;
+  background: linear-gradient(135deg,#0f172a,#020617);
+  color:#e5e7eb;
+}
+
+/* Container */
+.container {
+  max-width:420px;
+  margin:auto;
+  padding:16px;
+}
+
+/* Header */
+.companyHeader {
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+
+/* Logo */
+.logo {
+  width:45px;
+  height:45px;
+  border-radius:50%;
+  background: linear-gradient(135deg,#6366f1,#22d3ee);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-family:'Orbitron';
+  font-size:18px;
+  font-weight:bold;
+  box-shadow:0 6px 18px rgba(0,0,0,0.4);
+}
+
+/* Company Name */
+.companyName {
+  font-size:15px;
+  font-weight:600;
+  color:#f1f5f9;
+}
+
+/* Cards */
+.card {
+  background: rgba(255,255,255,0.04);
+  backdrop-filter: blur(14px);
+  border-radius:16px;
+  padding:16px;
+  margin-bottom:14px;
+  box-shadow:0 6px 20px rgba(0,0,0,0.35);
+  border:1px solid rgba(255,255,255,0.05);
+  transition:0.25s;
+}
+
+.card:hover {
+  transform:translateY(-2px);
+}
+
+/* Header row */
+.header {
+  display:flex;
+  justify-content:space-between;
+  font-size:14px;
+}
+
+.online {
+  color:#22c55e;
+  font-weight:500;
+}
+
+/* Amount */
+.amount {
+  font-size:32px;
+  font-weight:600;
+  color:#22d3ee;
+}
+
+/* Buttons */
+.btn {
+  padding:13px;
+  border-radius:12px;
+  margin-top:10px;
+  background: linear-gradient(135deg,#6366f1,#22d3ee);
+  cursor:pointer;
+  text-align:center;
+  transition:0.25s;
+  font-weight:500;
+}
+
+.btn:hover {
+  transform:translateY(-2px);
+  box-shadow:0 8px 20px rgba(34,211,238,0.35);
+}
+
+/* Admin button */
+.adminBtn {
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+}
+
+.tgIcon {
+  width:20px;
+}
+
+/* Input */
+input {
+  width:100%;
+  padding:12px;
+  margin-top:10px;
+  border-radius:10px;
+  border:none;
+  outline:none;
+  background:#020617;
+  color:white;
+  border:1px solid rgba(255,255,255,0.08);
+}
+
+/* QR */
+.qr {
+  text-align:center;
+}
+
+.qr img {
+  width:180px;
+  margin-top:10px;
+}
+
+/* UPI */
+.upi {
+  color:#fb7185;
+  font-weight:600;
+  margin-top:8px;
+}
+
+/* Toast */
+#liveToast {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  background: rgba(2,6,23,0.95);
+  padding: 10px 14px;
+  border-radius: 8px;
+  display:none;
+  font-size:13px;
+  border:1px solid rgba(255,255,255,0.08);
+}
+
+/* Order */
+.orderBox {
+  display:none;
+}
+
+/* Titles */
+h3 {
+  margin:0 0 8px;
+  font-size:15px;
+  font-weight:600;
+  color:#f8fafc;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<!-- Header -->
+<div class="card companyHeader">
+  <div class="logo">HB</div>
+  <div class="companyName">Hunter Bind Managing Systems</div>
+</div>
+
+<div class="card header">
+  <div>Gaming Panel</div>
+  <div class="online">● Online</div>
+</div>
+
+<!-- Live Users -->
+<div class="card" style="text-align:center;">
+  <h3>🟢 Live Users</h3>
+  <div id="liveUsers">132</div>
+</div>
+
+<!-- Orders -->
+<div class="card">
+  <h3>Recent Orders</h3>
+  <div id="recentOrders"></div>
+</div>
+
+<!-- Service -->
+<div class="card">
+  <h3>FF DOUBLE UNSUBSCRIBE</h3>
+</div>
+
+<!-- Amount -->
+<div class="card">
+  <div>Total Amount</div>
+  <div class="amount">₹1000</div>
+</div>
+
+<!-- Payment -->
+<div class="card">
+  <h3>Payment</h3>
+  <div class="btn" onclick="selectPay('Visa')">Visa 💳</div>
+  <div class="btn" onclick="selectPay('Google Play')">Google Play 💲</div>
+  <div class="btn" onclick="selectPay('PayPal')">PayPal 🅿️</div>
+</div>
+
+<!-- Admin -->
+<div class="card">
+  <h3>Contact Admin</h3>
+
+  <div class="btn adminBtn" onclick="openAdmin('https://t.me/Hunter666yt')">
+    <img src="https://cdn-icons-png.flaticon.com/512/2111/2111646.png" class="tgIcon">
+    Admin 1
+  </div>
+
+  <div class="btn adminBtn" onclick="openAdmin('https://t.me/CARDERxKING4REASON')">
+    <img src="https://cdn-icons-png.flaticon.com/512/2111/2111646.png" class="tgIcon">
+    Admin 2 
+  </div>
+</div>
+
+<!-- Input -->
+<div class="card">
+  <input type="email" id="email" placeholder="Enter email">
+  <div class="btn" onclick="submitOrder()">Submit</div>
+</div>
+
+<!-- QR -->
+<div class="card qr">
+  <h3>Scan</h3>
+
+  <img src="https://cdn-icons-png.flaticon.com/512/2331/2331943.png" style="width:70px">
+
+  <img src="https://postimg.cc/06NC1NZ3" alt="Payment Scanner">
+
+  <div class="upi">8115909294@fam</div>
+</div>
+
+<!-- Order -->
+<div class="card orderBox" id="orderBox">
+  <h3>Order Created</h3>
+  <p id="orderId"></p>
+</div>
+
+</div>
+
+<div id="liveToast"></div>
+
+<audio id="pingSound" src="https://www.myinstants.com/media/sounds/discord-notification.mp3"></audio>
+
+<script>
+let selectedMethod="";
+
+function openAdmin(url){
+  window.open(url, "_blank");
+}
+
+function selectPay(method){
+  selectedMethod = method;
+  alert(method+" selected");
+}
+
+function submitOrder(){
+  let email = document.getElementById("email").value;
+
+  if(email=="" || selectedMethod==""){
+    alert("Fill all details");
+    return;
+  }
+
+  let id="ORD"+Math.floor(Math.random()*100000);
+  document.getElementById("orderBox").style.display="block";
+  document.getElementById("orderId").innerText=id;
+}
+
+const names=["Rahul","Aman","Neha","Pooja","Arjun"];
+const cities=["Lucknow","Delhi","Mumbai"];
+const actions=["purchased","completed payment","placed order"];
+
+let count=130;
+setInterval(()=>{
+  count += Math.floor(Math.random()*5)-2;
+  document.getElementById("liveUsers").innerText=count;
+},3000);
+
+function showActivity(){
+  let name=names[Math.floor(Math.random()*names.length)];
+  let city=cities[Math.floor(Math.random()*cities.length)];
+  let action=actions[Math.floor(Math.random()*actions.length)];
+
+  let msg=name+" from "+city+" "+action;
+
+  let t=document.getElementById("liveToast");
+  t.innerText=msg;
+  t.style.display="block";
+
+  document.getElementById("pingSound").play();
+
+  setTimeout(()=>{t.style.display="none";},3000);
+
+  let box=document.getElementById("recentOrders");
+  let div=document.createElement("div");
+  div.innerText="• "+msg;
+  box.prepend(div);
+
+  if(box.childNodes.length>5){
+    box.removeChild(box.lastChild);
+  }
+}
+
+setInterval(showActivity,6000);
+</script>
+
+</body>
+</html>
